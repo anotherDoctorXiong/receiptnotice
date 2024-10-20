@@ -30,8 +30,11 @@ public class AlipayPmentayNotificationHandle extends PmentayNotificationHandle i
 
     public void handleNotification() {
         if (content.contains("成功收款") | content.contains("向你付款")) {
+
             collectioncodePush(true);
             return;
+        }else {
+            LogUtil.debugLog("未进入 collectioncodePush");
         }
 
 
@@ -62,6 +65,7 @@ public class AlipayPmentayNotificationHandle extends PmentayNotificationHandle i
     }
 
     private void collectioncodePush(boolean isinfoincontent) {
+        LogUtil.debugLog("进入 collectioncodePush");
         Map<String, String> postmap = new HashMap<String, String>();
         postmap.put("type", "alipay");
         postmap.put("time", notitime);
@@ -98,8 +102,7 @@ public class AlipayPmentayNotificationHandle extends PmentayNotificationHandle i
     }
 
     public void subMessage() {
-        LiveEventBus
-                .get("get_alipay_transfer_money", AlipayTransferBean.class)
+        LiveEventBus.get("get_alipay_transfer_money", AlipayTransferBean.class)
                 .observeForever(new Observer<AlipayTransferBean>() {
                     @Override
                     public void onChanged(@Nullable AlipayTransferBean transfer) {
