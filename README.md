@@ -48,3 +48,5 @@ The code, wiki and other resources of this project are released under a modified
 *In the extended code (modified and source code-derived code), the agreement, trademarks, patent notices, and other original author specifications need to be included in the original code.*
 
 ##### [Chinese README](https://github.com/WeihuaGu/receiptnotice/blob/master/README-zh.md)
+
+###
