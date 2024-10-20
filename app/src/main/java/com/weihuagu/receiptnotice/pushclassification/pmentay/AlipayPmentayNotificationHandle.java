@@ -29,15 +29,18 @@ public class AlipayPmentayNotificationHandle extends PmentayNotificationHandle i
     }
 
     public void handleNotification() {
+        if (content.contains("向你转了1笔钱")) {
+            transfercodePush();
+            return;
+        }
         if (content.contains("成功收款") | content.contains("向你付款")) {
-
             collectioncodePush(true);
             return;
-        }else {
-            LogUtil.debugLog("未进入 collectioncodePush");
         }
 
-
+        if (title.contains("成功收款") | title.contains("向你付款")) {
+            collectioncodePush(false);
+        }
     }
 
     private void transfercodePush() {
